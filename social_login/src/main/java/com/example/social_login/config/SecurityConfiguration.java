@@ -33,23 +33,23 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/auth/quan-ly-khach-san/**").permitAll()
 
 
-                        // API dat-phong
-
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/dat-phong/danh-sach-dat-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/dat-phong/cap-nhat-trang-thai/**").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/dat-phong/them-moi").hasAuthority(ADMIN.name())
-
-                        // APT phong
-
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/phong/danh-sach-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/phong/cap-nhat-phong/**").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/phong/them-phong-moi").hasAuthority(ADMIN.name())
-
-                        // APT loai-phong
-
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/loai-phong/danh-sach-loai-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/loai-phong/cap-nhat-loai-phong/**").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/loai-phong/them-loai-phong-moi").hasAuthority(ADMIN.name())
+//                        // API dat-phong
+//
+//                        .requestMatchers(GET,"/api/quan-ly-khach-san/dat-phong/danh-sach-dat-phong").hasAnyAuthority(ADMIN.name(), USER.name())
+//                        .requestMatchers(PUT,"/api/quan-ly-khach-san/dat-phong/cap-nhat-trang-thai/**").hasAuthority(ADMIN.name())
+//                        .requestMatchers(POST,"/api/quan-ly-khach-san/dat-phong/them-moi").hasAuthority(ADMIN.name())
+//
+//                        // APT phong
+//
+//                        .requestMatchers(GET,"/api/quan-ly-khach-san/phong/danh-sach-phong").hasAnyAuthority(ADMIN.name(), USER.name())
+//                        .requestMatchers(PUT,"/api/quan-ly-khach-san/phong/cap-nhat-phong/**").hasAuthority(ADMIN.name())
+//                        .requestMatchers(POST,"/api/quan-ly-khach-san/phong/them-phong-moi").hasAuthority(ADMIN.name())
+//
+//                        // APT loai-phong
+//
+//                        .requestMatchers(GET,"/api/quan-ly-khach-san/loai-phong/danh-sach-loai-phong").hasAnyAuthority(ADMIN.name(), USER.name())
+//                        .requestMatchers(PUT,"/api/quan-ly-khach-san/loai-phong/cap-nhat-loai-phong/**").hasAuthority(ADMIN.name())
+//                        .requestMatchers(POST,"/api/quan-ly-khach-san/loai-phong/them-loai-phong-moi").hasAuthority(ADMIN.name())
 
 
 
