@@ -1,4 +1,4 @@
-package com.example.social_login.model;
+package com.example.social_login.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @Table(name = "ROOM")
-public class Room {
+public class RoomEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,5 @@ public class Room {
 
     private String floor;
 
-    @ManyToOne
-    @JoinColumn(name = "room_type_id")
-    private RoomType roomType;
+    private Integer roomTypeId;
 }

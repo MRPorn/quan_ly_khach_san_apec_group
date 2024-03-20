@@ -1,4 +1,4 @@
-package com.example.social_login.model.authentication;
+package com.example.social_login.model;
 
 import com.example.social_login.constant.Role;
 import lombok.AllArgsConstructor;

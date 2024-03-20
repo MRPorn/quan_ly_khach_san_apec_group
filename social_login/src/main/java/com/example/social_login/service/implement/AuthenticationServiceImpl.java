@@ -1,10 +1,12 @@
-package com.example.social_login.service;
+package com.example.social_login.service.implement;
 
-import com.example.social_login.model.authentication.AuthenticationRequest;
-import com.example.social_login.model.authentication.AuthenticationResponse;
-import com.example.social_login.model.authentication.RegisterRequest;
+import com.example.social_login.model.AuthenticationRequest;
+import com.example.social_login.model.AuthenticationResponse;
+import com.example.social_login.model.RegisterRequest;
 import com.example.social_login.entity.UserEntity;
-import com.example.social_login.repository.UsersRepository;
+import com.example.social_login.repository.UserRepository;
+import com.example.social_login.service.AuthenticationService;
+import com.example.social_login.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,9 +15,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private final UsersRepository repository;
+    private final UserRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -23,6 +25,7 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
+    @Override
     public AuthenticationResponse authentication(AuthenticationRequest request) {
 
         authenticationManager.authenticate(
@@ -41,6 +44,7 @@ public class AuthenticationService {
                 .build();
     }
 
+    @Override
     public AuthenticationResponse register(RegisterRequest request) {
         var user = UserEntity.builder()
                 .email(request.getEmail())

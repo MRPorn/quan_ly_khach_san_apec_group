@@ -1,8 +1,9 @@
-package com.example.social_login.service;
+package com.example.social_login.service.implement;
 
 import com.example.social_login.entity.RoomEntity;
-import com.example.social_login.model.room.RoomModel;
+import com.example.social_login.model.RoomModel;
 import com.example.social_login.repository.RoomRepository;
+import com.example.social_login.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,10 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class RoomService {
+public class RoomServiceImpl implements RoomService {
 
     private  final RoomRepository roomRepository;
 
+    @Override
     public List<RoomModel> getAllRoom(int page){
 
         Pageable pageable = PageRequest.of(page,2);
@@ -30,16 +32,20 @@ public class RoomService {
                         .collect(Collectors.toList());
     }
 
+    @Override
     public RoomModel saveRoom (RoomModel roomModel){
+
 
         RoomEntity roomEntity = roomRepository.save(
                 convertRoomModelToRoomEntity(roomModel)
         );
 
+
         return convertRoomEntityToRoomModel(roomEntity);
 
     }
 
+    @Override
     public RoomModel updateRoom(int id, RoomModel roomModel) {
 
         RoomEntity roomEntity = roomRepository.findById(id).orElse(null);
@@ -55,6 +61,7 @@ public class RoomService {
         return saveRoom(convertRoomEntityToRoomModel(roomEntity));
     }
 
+    @Override
     public RoomModel convertRoomEntityToRoomModel (RoomEntity roomEntity){
 
         return RoomModel.builder()
@@ -66,6 +73,8 @@ public class RoomService {
                         .roomTypeId(roomEntity.getRoomTypeId())
                         .build();
     }
+
+    @Override
     public RoomEntity convertRoomModelToRoomEntity (RoomModel roomModel){
 
         return RoomEntity.builder()

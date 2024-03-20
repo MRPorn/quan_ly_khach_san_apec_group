@@ -1,6 +1,6 @@
 package com.example.social_login.security;
 
-import com.example.social_login.services.JwtService;
+import com.example.social_login.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,9 +41,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
+
         userEmail = jwtService.extractUsername(jwt);
 
+
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
             if (jwtService.isTokenValid(jwt, userDetails)) {

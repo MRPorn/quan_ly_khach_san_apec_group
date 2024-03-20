@@ -1,4 +1,4 @@
-package com.example.social_login.model.reservation;
+package com.example.social_login.model;
 
 import lombok.*;
 
@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@ToString
 public class ReservationModel {
 
     private Integer id;

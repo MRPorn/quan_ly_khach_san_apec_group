@@ -1,4 +1,4 @@
-package com.example.social_login.model.room;
+package com.example.social_login.model;
 
 import lombok.Builder;
 import lombok.Getter;

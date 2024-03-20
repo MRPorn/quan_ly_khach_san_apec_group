@@ -1,7 +1,7 @@
 package com.example.social_login.controller;
 
-import com.example.social_login.model.Reservation;
-import com.example.social_login.services.ReservationService;
+import com.example.social_login.model.ReservationModel;
+import com.example.social_login.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -17,27 +17,28 @@ public class ReservationController {
 
     private final ReservationService service;
 
-    @Secured({"ADMIN" ,"USER"})
+//    @Secured({"ADMIN", "USER"})
     @GetMapping("/danh-sach-dat-phong")
-    public ResponseEntity<?> getAllReservation(
+    public ResponseEntity<List<ReservationModel>> getAllReservation(
             @RequestParam(defaultValue = "0", name = "page") int page
-    ){
-        List<Reservation> list = service.getAllReservation(page);
-        return ResponseEntity.ok(list);
+    ) {
+        return ResponseEntity.ok(service.getAllReservation(page));
     }
 
-    @Secured("ADMIN")
+//    @Secured("ADMIN")
     @PostMapping("/them-moi")
-    public ResponseEntity<?> saveRoomType(@RequestBody Reservation reservation){
-        return ResponseEntity.ok(service.saveReservation(reservation));
+    public ResponseEntity<ReservationModel> saveRoomType(
+            @RequestBody ReservationModel reservationModel
+    ) {
+        System.out.println(reservationModel.toString());
+        return ResponseEntity.ok(service.saveReservation(reservationModel));
     }
 
-    @Secured("ADMIN")
-    @PutMapping("/cap-nhat-trang-thai/{id}")
-    public ResponseEntity<?> updateStatus(
-            @PathVariable int id,
-            @RequestBody Reservation reservation
-    ){
-        return ResponseEntity.ok(service.updateStatus(id, reservation));
+//    @Secured("ADMIN")
+    @PutMapping("/cap-nhat-trang-thai")
+    public ResponseEntity<ReservationModel> updateStatus(
+            @RequestBody ReservationModel reservationModel
+    ) {
+        return ResponseEntity.ok(service.updateStatus(reservationModel.getId(), reservationModel));
     }
 }

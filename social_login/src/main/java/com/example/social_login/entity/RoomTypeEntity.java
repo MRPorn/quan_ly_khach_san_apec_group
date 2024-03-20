@@ -1,4 +1,4 @@
-package com.example.social_login.model;
+package com.example.social_login.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @Table(name = "ROOM_TYPE")
-public class RoomType {
+public class RoomTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

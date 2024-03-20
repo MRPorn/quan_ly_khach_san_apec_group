@@ -1,13 +1,23 @@
-spring.application.name=social_login
+
+spring:
+  application:
+    name: social_login
+
+  datasource:
+    url: postgresql://localhost:5432/quan_ly_khach_san
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
 #
 #spring.security.oauth2.client.registration.google.client-id=59177522148-seil10b0ea6j098onerg789uc18ica4n.apps.googleusercontent.com
 #spring.security.oauth2.client.registration.google.client-secret=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
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/quan_ly_khach_san
-spring.datasource.username=postgres
-spring.datasource.password=123
-spring.datasource.driver-class-name= org.postgresql.Driver
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true

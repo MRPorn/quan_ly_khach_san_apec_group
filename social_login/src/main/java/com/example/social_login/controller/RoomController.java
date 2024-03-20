@@ -1,12 +1,8 @@
 package com.example.social_login.controller;
 
-import com.example.social_login.model.Room;
-import com.example.social_login.model.RoomType;
-import com.example.social_login.services.RoomServies;
+import com.example.social_login.model.RoomModel;
+import com.example.social_login.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -18,29 +14,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoomController {
 
-    private final RoomServies servies;
+    private final RoomService service;
 
-    @Secured({"ADMIN" ,"USER"})
+//    @Secured({"ADMIN" ,"USER"})
     @GetMapping("/danh-sach-phong")
-    public ResponseEntity<List<Room>> pageRoom(
+    public ResponseEntity<List<RoomModel>> pageRoom(
             @RequestParam(defaultValue = "0", name = "page") int page
     ){
 
-        return ResponseEntity.ok(servies.getAllRoom(page));
+        return ResponseEntity.ok(service.getAllRoom(page));
     }
 
-    @Secured("ADMIN")
+//    @Secured("ADMIN")
     @PostMapping("/them-phong-moi")
-    public ResponseEntity<?> saveRoomType(@RequestBody Room room){
-        return ResponseEntity.ok(servies.saveRoom(room));
+    public ResponseEntity<RoomModel> saveRoomType(
+            @RequestBody RoomModel roomModel
+    ){
+        return ResponseEntity.ok(service.saveRoom(roomModel));
     }
 
-    @Secured("ADMIN")
-    @PutMapping("/cap-nhat-phong/{id}")
-    public ResponseEntity<?> update(
-            @PathVariable int id,
-            @RequestBody Room room
+//    @Secured("ADMIN")
+    @PutMapping("/cap-nhat-phong")
+    public ResponseEntity<RoomModel> update(
+            @RequestBody RoomModel roomModel
     ){
-        return ResponseEntity.ok(servies.updateRoom(id, room));
+        return ResponseEntity.ok(service.updateRoom(roomModel.getId(), roomModel));
     }
 }

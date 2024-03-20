@@ -1,4 +1,4 @@
-package com.example.social_login.model;
+package com.example.social_login.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,8 +12,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "RESERVATION")
-public class Reservation {
+public class ReservationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,12 +36,8 @@ public class Reservation {
 
     private Integer status;
 
-    @ManyToOne
-    @JoinColumn(name = "room_type_id")
-    private RoomType roomType;
+    private Integer roomTypeId;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+    private Integer roomId;
 
 }

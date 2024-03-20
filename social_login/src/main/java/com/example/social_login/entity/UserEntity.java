@@ -1,5 +1,6 @@
-package com.example.social_login.model;
+package com.example.social_login.entity;
 
+import com.example.social_login.constant.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,8 +16,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "USERS")
-public class Users implements UserDetails {
+@Table(name = "USER")
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,8 +1,9 @@
-package com.example.social_login.service;
+package com.example.social_login.service.implement;
 
 import com.example.social_login.entity.ReservationEntity;
-import com.example.social_login.model.reservation.ReservationModel;
+import com.example.social_login.model.ReservationModel;
 import com.example.social_login.repository.ReservationRepository;
+import com.example.social_login.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,9 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ReservationService {
+public class ReservationServiceImpl implements ReservationService {
+
     private final ReservationRepository reservationRepository;
 
+    @Override
     public List<ReservationModel> getAllReservation(int page) {
 
         Pageable pageable = PageRequest.of(page, 2);
@@ -30,16 +33,22 @@ public class ReservationService {
 
     }
 
+    @Override
     public ReservationModel saveReservation(ReservationModel reservationModel) {
+
+        System.out.println("reservationModel: " + reservationModel.toString());
 
         ReservationEntity reservationEntity = reservationRepository.save(
                 convertReservationModelToReservationEntity(reservationModel)
         );
 
+        System.out.println("reservationEntity: " + reservationEntity.toString());
+
         return convertReservationEntityToReservationModel(reservationEntity);
 
     }
 
+    @Override
     public ReservationModel updateStatus(int id, ReservationModel reservationModel) {
 
         ReservationEntity reservationEntity = reservationRepository.findById(id).orElse(null);
@@ -51,6 +60,7 @@ public class ReservationService {
         return saveReservation(convertReservationEntityToReservationModel(reservationEntity));
     }
 
+    @Override
     public ReservationModel convertReservationEntityToReservationModel(ReservationEntity reservationEntity) {
         return  ReservationModel.builder()
                                 .id(reservationEntity.getId())
@@ -67,6 +77,7 @@ public class ReservationService {
                                 .build();
     }
 
+    @Override
     public ReservationEntity convertReservationModelToReservationEntity(ReservationModel reservationModel) {
         return ReservationEntity.builder()
                                 .id(reservationModel.getId())
