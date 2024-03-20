@@ -1,4 +1,4 @@
-package com.example.social_login.dto;
+package com.example.social_login.model.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

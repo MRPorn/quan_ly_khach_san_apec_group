@@ -1,6 +1,6 @@
-package com.example.social_login.dto;
+package com.example.social_login.model.authentication;
 
-import com.example.social_login.model.Role;
+import com.example.social_login.constant.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

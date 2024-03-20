@@ -1,4 +1,4 @@
-package com.example.social_login.model;
+package com.example.social_login.constants;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
