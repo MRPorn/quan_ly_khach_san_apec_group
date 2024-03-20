@@ -36,13 +36,9 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public ReservationModel saveReservation(ReservationModel reservationModel) {
 
-        System.out.println("reservationModel: " + reservationModel.toString());
-
         ReservationEntity reservationEntity = reservationRepository.save(
                 convertReservationModelToReservationEntity(reservationModel)
         );
-
-        System.out.println("reservationEntity: " + reservationEntity.toString());
 
         return convertReservationEntityToReservationModel(reservationEntity);
 

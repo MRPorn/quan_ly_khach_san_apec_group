@@ -4,7 +4,7 @@ spring:
     name: social_login
 
   datasource:
-    url: postgresql://localhost:5432/quan_ly_khach_san
+    url: jdbc:postgresql://localhost:5432/quan_ly_khach_san
     username: postgres
     password: 123
     driver-class-name: org.postgresql.Driver

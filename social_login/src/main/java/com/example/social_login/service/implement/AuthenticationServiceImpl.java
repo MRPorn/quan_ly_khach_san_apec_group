@@ -28,14 +28,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResponse authentication(AuthenticationRequest request) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
 
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
+    var user = repository.findByEmail(request.getEmail()).orElseThrow();
+
+
 
         var jwtToken = jwtService.generateToken(user);
 
