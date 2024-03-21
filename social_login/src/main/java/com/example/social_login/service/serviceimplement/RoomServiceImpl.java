@@ -35,31 +35,48 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public RoomModel saveRoom (RoomModel roomModel){
 
+        RoomEntity roomEntity = convertRoomModelToRoomEntity(roomModel);
 
-        RoomEntity roomEntity = roomRepository.save(
-                convertRoomModelToRoomEntity(roomModel)
+        if (roomModel.getId() != null){
+            RoomEntity roomEntityResultUpdate = roomRepository.updateRoomEntity(
+                    roomEntity.getName(),
+                    roomEntity.getDescription(),
+                    roomEntity.getFloor(),
+                    roomEntity.getRoomTypeId(),
+                    roomEntity.getId()
+            );
+
+            return convertRoomEntityToRoomModel(roomEntityResultUpdate);
+        }
+
+        RoomEntity roomEntityResult = roomRepository.saveRoomEntity(
+                roomEntity.getCode(),
+                roomEntity.getName(),
+                roomEntity.getDescription(),
+                roomEntity.getFloor(),
+                roomEntity.getRoomTypeId()
         );
 
 
-        return convertRoomEntityToRoomModel(roomEntity);
+        return convertRoomEntityToRoomModel(roomEntityResult);
 
     }
 
-    @Override
-    public RoomModel updateRoom(int id, RoomModel roomModel) {
-
-        RoomEntity roomEntity = roomRepository.findById(id).orElse(null);
-
-        assert roomEntity != null;
-
-        roomEntity.setCode(roomModel.getCode());
-        roomEntity.setName(roomModel.getName());
-        roomEntity.setDescription(roomModel.getDescription());
-        roomEntity.setFloor(roomModel.getFloor());
-        roomEntity.setRoomTypeId(roomModel.getRoomTypeId());
-
-        return saveRoom(convertRoomEntityToRoomModel(roomEntity));
-    }
+//    @Override
+//    public RoomModel updateRoom(RoomModel roomModel) {
+//
+//        RoomEntity roomEntity = roomRepository.findById(id).orElse(null);
+//
+//        assert roomEntity != null;
+//
+//        roomEntity.setCode(roomModel.getCode());
+//        roomEntity.setName(roomModel.getName());
+//        roomEntity.setDescription(roomModel.getDescription());
+//        roomEntity.setFloor(roomModel.getFloor());
+//        roomEntity.setRoomTypeId(roomModel.getRoomTypeId());
+//
+//        return saveRoom(convertRoomEntityToRoomModel(roomEntity));
+//    }
 
     @Override
     public RoomModel convertRoomEntityToRoomModel (RoomEntity roomEntity){

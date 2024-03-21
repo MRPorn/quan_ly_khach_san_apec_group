@@ -38,6 +38,6 @@ public class RoomController {
     public ResponseEntity<RoomModel> update(
             @RequestBody RoomModel roomModel
     ){
-        return ResponseEntity.ok(service.updateRoom(roomModel.getId(), roomModel));
+        return ResponseEntity.ok(service.saveRoom(roomModel));
     }
 }

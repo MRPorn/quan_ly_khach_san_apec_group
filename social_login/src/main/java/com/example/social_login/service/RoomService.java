@@ -11,7 +11,7 @@ public interface RoomService {
 
     RoomModel saveRoom (RoomModel roomModel);
 
-    RoomModel updateRoom(int id, RoomModel roomModel);
+//    RoomModel updateRoom(RoomModel roomModel);
 
     RoomModel convertRoomEntityToRoomModel (RoomEntity roomEntity);
 
