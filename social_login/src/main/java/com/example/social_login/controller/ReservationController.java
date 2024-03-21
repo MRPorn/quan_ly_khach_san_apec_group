@@ -39,6 +39,6 @@ public class ReservationController {
     public ResponseEntity<ReservationModel> updateStatus(
             @RequestBody ReservationModel reservationModel
     ) {
-        return ResponseEntity.ok(service.updateStatus(reservationModel.getId(), reservationModel));
+        return ResponseEntity.ok(service.saveReservation(reservationModel));
     }
 }

@@ -4,6 +4,7 @@ import com.example.social_login.entity.ReservationEntity;
 import com.example.social_login.model.ReservationModel;
 import com.example.social_login.repository.ReservationRepository;
 import com.example.social_login.service.ReservationService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
 
+    @Transactional()
     @Override
     public List<ReservationModel> getAllReservation(int page) {
 
@@ -30,31 +32,60 @@ public class ReservationServiceImpl implements ReservationService {
                                 .stream()
                                 .map(this::convertReservationEntityToReservationModel)
                                 .collect(Collectors.toList());
-
     }
 
     @Override
     public ReservationModel saveReservation(ReservationModel reservationModel) {
 
-        ReservationEntity reservationEntity = reservationRepository.save(
-                convertReservationModelToReservationEntity(reservationModel)
+        ReservationEntity reservationEntity = convertReservationModelToReservationEntity(reservationModel);
+
+        if (reservationModel.getId() != null){
+
+            ReservationEntity reservationEntityResultUpdate = reservationRepository.updateStatusReservationEntity(
+                    reservationEntity.getGuestName(),
+                    reservationEntity.getGuestIdNo(),
+                    reservationEntity.getGuestPhone(),
+                    reservationEntity.getGuestEmail(),
+                    reservationEntity.getCreateDate(),
+                    reservationEntity.getPrice(),
+                    reservationEntity.getStatus(),
+                    reservationEntity.getRoomTypeId(),
+                    reservationEntity.getRoomId(),
+                    reservationEntity.getId()
+            );
+
+            return convertReservationEntityToReservationModel(reservationEntityResultUpdate);
+
+        }
+
+        ReservationEntity reservationEntityResultSave = reservationRepository.saveReservationEntity(
+                reservationEntity.getCode(),
+                reservationEntity.getGuestName(),
+                reservationEntity.getGuestIdNo(),
+                reservationEntity.getGuestPhone(),
+                reservationEntity.getGuestEmail(),
+                reservationEntity.getCreateDate(),
+                reservationEntity.getPrice(),
+                reservationEntity.getStatus(),
+                reservationEntity.getRoomTypeId(),
+                reservationEntity.getRoomId()
         );
 
-        return convertReservationEntityToReservationModel(reservationEntity);
+        return convertReservationEntityToReservationModel(reservationEntityResultSave);
 
     }
 
-    @Override
-    public ReservationModel updateStatus(int id, ReservationModel reservationModel) {
-
-        ReservationEntity reservationEntity = reservationRepository.findById(id).orElse(null);
-
-        assert reservationEntity != null;
-
-        reservationEntity.setStatus(reservationModel.getStatus());
-
-        return saveReservation(convertReservationEntityToReservationModel(reservationEntity));
-    }
+//    @Override
+//    public ReservationModel updateStatus(ReservationModel reservationModel) {
+//
+//        ReservationEntity reservationEntity = reservationRepository.findById(id).orElse(null);
+//
+//        assert reservationEntity != null;
+//
+//        reservationEntity.setStatus(reservationModel.getStatus());
+//
+//        return saveReservation(convertReservationEntityToReservationModel(reservationEntity));
+//    }
 
     @Override
     public ReservationModel convertReservationEntityToReservationModel(ReservationEntity reservationEntity) {

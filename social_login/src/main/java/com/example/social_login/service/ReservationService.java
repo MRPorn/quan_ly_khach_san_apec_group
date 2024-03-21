@@ -11,7 +11,7 @@ public interface ReservationService {
 
     ReservationModel saveReservation(ReservationModel reservationModel);
 
-    ReservationModel updateStatus(int id, ReservationModel reservationModel);
+//    ReservationModel updateStatus(ReservationModel reservationModel);
 
     ReservationModel convertReservationEntityToReservationModel(ReservationEntity reservationEntity);
 
