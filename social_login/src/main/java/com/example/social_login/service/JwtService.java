@@ -3,8 +3,6 @@ package com.example.social_login.service;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.security.Key;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.function.Function;

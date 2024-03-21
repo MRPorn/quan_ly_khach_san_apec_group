@@ -1,4 +1,4 @@
-package com.example.social_login.service.implement;
+package com.example.social_login.service.serviceimplement;
 
 import com.example.social_login.model.AuthenticationRequest;
 import com.example.social_login.model.AuthenticationResponse;
@@ -53,6 +53,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
+
         repository.save(user);
 
         var jwtToken = jwtService.generateToken(user);

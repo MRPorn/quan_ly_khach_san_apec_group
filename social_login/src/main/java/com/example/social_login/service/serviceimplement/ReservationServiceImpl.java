@@ -1,4 +1,4 @@
-package com.example.social_login.service.implement;
+package com.example.social_login.service.serviceimplement;
 
 import com.example.social_login.entity.ReservationEntity;
 import com.example.social_login.model.ReservationModel;

@@ -4,7 +4,6 @@ import com.example.social_login.model.RoomTypeModel;
 import com.example.social_login.service.RoomTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class RoomTypeController {
     public ResponseEntity<RoomTypeModel> updateRoom(
             @RequestBody RoomTypeModel roomTypeModel
     ){
-        return ResponseEntity.ok(service.updateRoomType(roomTypeModel.getId(), roomTypeModel));
+        return ResponseEntity.ok(service.saveRoomType(roomTypeModel));
     }
 
 

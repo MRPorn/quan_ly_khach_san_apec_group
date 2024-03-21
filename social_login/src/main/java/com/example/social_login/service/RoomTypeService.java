@@ -11,7 +11,7 @@ public interface RoomTypeService {
 
     RoomTypeModel saveRoomType(RoomTypeModel roomTypeModel);
 
-    RoomTypeModel updateRoomType(int id, RoomTypeModel roomTypeModel);
+//    RoomTypeModel updateRoomType(RoomTypeModel roomTypeModel);
 
     RoomTypeModel convertRoomTypeEntityToRoomTypeModel(RoomTypeEntity roomTypeEntity);
 
