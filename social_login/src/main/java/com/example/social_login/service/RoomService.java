@@ -2,6 +2,7 @@ package com.example.social_login.service;
 
 import com.example.social_login.entity.RoomEntity;
 import com.example.social_login.model.RoomModel;
+import com.example.social_login.model.SearchRoomResult;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface RoomService {
     RoomModel convertRoomEntityToRoomModel (RoomEntity roomEntity);
 
     RoomEntity convertRoomModelToRoomEntity (RoomModel roomModel);
+
+    List<SearchRoomResult> searchRoomByAveragePrice(int averagePrice);
 }

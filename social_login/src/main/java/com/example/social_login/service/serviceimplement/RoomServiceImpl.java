@@ -2,6 +2,7 @@ package com.example.social_login.service.serviceimplement;
 
 import com.example.social_login.entity.RoomEntity;
 import com.example.social_login.model.RoomModel;
+import com.example.social_login.model.SearchRoomResult;
 import com.example.social_login.repository.RoomRepository;
 import com.example.social_login.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -102,6 +105,23 @@ public class RoomServiceImpl implements RoomService {
                         .floor(roomModel.getFloor())
                         .roomTypeId(roomModel.getRoomTypeId())
                         .build();
+    }
+
+    @Override
+    public List<SearchRoomResult> searchRoomByAveragePrice(int averagePrice) {
+
+        return roomRepository.searchRoomByAveragePrice(averagePrice)
+                .stream()
+                .map(x -> {
+                    SearchRoomResult searchRoomResult = new SearchRoomResult();
+                    searchRoomResult.setRoomId((Integer) x[0]);
+                    searchRoomResult.setRoomName((String) x[1]);
+                    searchRoomResult.setDescription((String) x[2]);
+                    searchRoomResult.setReservationRoomCount(((Number) x[3]).intValue());
+                    searchRoomResult.setAveragePrice(((Number) x[4]).doubleValue());
+                    return searchRoomResult;
+                })
+                .collect(Collectors.toList());
     }
 }
 

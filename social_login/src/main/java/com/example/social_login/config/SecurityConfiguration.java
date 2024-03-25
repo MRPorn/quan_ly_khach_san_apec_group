@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                         // APT phong
 
                         .requestMatchers(GET,"/api/hotel-management/room/room-page").hasAnyAuthority(ADMIN.name(), USER.name())
+                        .requestMatchers(GET,"/api/hotel-management/room/search-room-by-average-price").hasAnyAuthority(ADMIN.name(), USER.name())
                         .requestMatchers(PUT,"/api/hotel-management/room/update-room").hasAuthority(ADMIN.name())
                         .requestMatchers(POST,"/api/hotel-management/room/add-room").hasAuthority(ADMIN.name())
 

@@ -1,6 +1,7 @@
 package com.example.social_login.controller;
 
 import com.example.social_login.model.RoomModel;
+import com.example.social_login.model.SearchRoomResult;
 import com.example.social_login.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,13 @@ public class RoomController {
         return ResponseEntity.ok(service.getAllRoom(page));
     }
 
+    @GetMapping("/search-room-by-average-price")
+    public ResponseEntity<List<SearchRoomResult>> search(
+            @RequestParam(defaultValue = "0", name = "average") int averagePrice
+    ){
+        return ResponseEntity.ok(service.searchRoomByAveragePrice(averagePrice));
+    }
+
     //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
     @PostMapping("/add-room")
@@ -44,4 +52,6 @@ public class RoomController {
     ) {
         return ResponseEntity.ok(service.saveRoom(roomModel));
     }
+
+
 }
