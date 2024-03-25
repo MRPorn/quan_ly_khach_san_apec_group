@@ -5,6 +5,7 @@ import com.example.social_login.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class RoomController {
     private final RoomService service;
 
 //    @Secured({"ADMIN" ,"USER"})
+//    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/danh-sach-phong")
     public ResponseEntity<List<RoomModel>> pageRoom(
             @RequestParam(defaultValue = "0", name = "page") int page
@@ -25,6 +27,7 @@ public class RoomController {
         return ResponseEntity.ok(service.getAllRoom(page));
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
     @PostMapping("/them-phong-moi")
     public ResponseEntity<RoomModel> saveRoomType(
@@ -33,6 +36,7 @@ public class RoomController {
         return ResponseEntity.ok(service.saveRoom(roomModel));
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
     @PutMapping("/cap-nhat-phong")
     public ResponseEntity<RoomModel> update(

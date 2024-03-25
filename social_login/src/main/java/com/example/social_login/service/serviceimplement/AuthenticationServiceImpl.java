@@ -54,7 +54,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .role(request.getRole())
                 .build();
 
-        repository.save(user);
+//        try {
+        UserEntity userResult = repository.saveRegisterUser(user.getEmail(), user.getPassword(), String.valueOf(user.getRole()));
+//        } catch (RuntimeException e) {
+////            Throwable throwable = new Throwable("Loi luu tai khoan");
+////
+////            throwable.toString();
+//            e.getMessage();
+//        }
+
 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

@@ -18,6 +18,7 @@ public class ReservationController {
     private final ReservationService service;
 
 //    @Secured({"ADMIN", "USER"})
+//    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/danh-sach-dat-phong")
     public ResponseEntity<List<ReservationModel>> getAllReservation(
             @RequestParam(defaultValue = "0", name = "page") int page
@@ -25,6 +26,7 @@ public class ReservationController {
         return ResponseEntity.ok(service.getAllReservation(page));
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
     @PostMapping("/them-moi")
     public ResponseEntity<ReservationModel> saveRoomType(
@@ -34,6 +36,7 @@ public class ReservationController {
         return ResponseEntity.ok(service.saveReservation(reservationModel));
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
     @PutMapping("/cap-nhat-trang-thai")
     public ResponseEntity<ReservationModel> updateStatus(
