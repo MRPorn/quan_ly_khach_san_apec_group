@@ -29,26 +29,26 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/quan-ly-khach-san/**").permitAll()
+                        .requestMatchers("/api/auth/hotel-management/**").permitAll()
 
 
                         // API dat-phong
 
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/dat-phong/danh-sach-dat-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/dat-phong/cap-nhat-trang-thai").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/dat-phong/them-moi").hasAuthority(ADMIN.name())
+                        .requestMatchers(GET,"/api/hotel-management/reservation/reservation-page").hasAnyAuthority(ADMIN.name(), USER.name())
+                        .requestMatchers(PUT,"/api/hotel-management/reservation/update-reservation").hasAuthority(ADMIN.name())
+                        .requestMatchers(POST,"/api/hotel-management/reservation/add-reservation").hasAuthority(ADMIN.name())
 
                         // APT phong
 
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/phong/danh-sach-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/phong/cap-nhat-phong").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/phong/them-phong-moi").hasAuthority(ADMIN.name())
+                        .requestMatchers(GET,"/api/hotel-management/room/room-page").hasAnyAuthority(ADMIN.name(), USER.name())
+                        .requestMatchers(PUT,"/api/hotel-management/room/update-room").hasAuthority(ADMIN.name())
+                        .requestMatchers(POST,"/api/hotel-management/room/add-room").hasAuthority(ADMIN.name())
 
                         // APT loai-phong
 
-                        .requestMatchers(GET,"/api/quan-ly-khach-san/loai-phong/danh-sach-loai-phong").hasAnyAuthority(ADMIN.name(), USER.name())
-                        .requestMatchers(PUT,"/api/quan-ly-khach-san/loai-phong/cap-nhat-loai-phong").hasAuthority(ADMIN.name())
-                        .requestMatchers(POST,"/api/quan-ly-khach-san/loai-phong/them-loai-phong-moi").hasAuthority(ADMIN.name())
+                        .requestMatchers(GET,"/api/hotel-management/room-type/room-type-page").hasAnyAuthority(ADMIN.name(), USER.name())
+                        .requestMatchers(PUT,"/api/hotel-management/room-type/update-room-type").hasAuthority(ADMIN.name())
+                        .requestMatchers(POST,"/api/hotel-management/room-type/add-room-type").hasAuthority(ADMIN.name())
 
 
 

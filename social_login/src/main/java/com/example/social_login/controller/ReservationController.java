@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/quan-ly-khach-san/dat-phong")
+@RequestMapping("/api/hotel-management/reservation")
 @RequiredArgsConstructor
 
 public class ReservationController {
@@ -19,7 +19,7 @@ public class ReservationController {
 
 //    @Secured({"ADMIN", "USER"})
 //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/danh-sach-dat-phong")
+    @GetMapping("/reservation-page")
     public ResponseEntity<List<ReservationModel>> getAllReservation(
             @RequestParam(defaultValue = "0", name = "page") int page
     ) {
@@ -28,7 +28,7 @@ public class ReservationController {
 
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
-    @PostMapping("/them-moi")
+    @PostMapping("/add-reservation")
     public ResponseEntity<ReservationModel> saveRoomType(
             @RequestBody ReservationModel reservationModel
     ) {
@@ -38,7 +38,7 @@ public class ReservationController {
 
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
-    @PutMapping("/cap-nhat-trang-thai")
+    @PutMapping("/update-reservation")
     public ResponseEntity<ReservationModel> updateStatus(
             @RequestBody ReservationModel reservationModel
     ) {

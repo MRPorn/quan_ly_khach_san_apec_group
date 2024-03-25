@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/quan-ly-khach-san/phong")
+@RequestMapping("/api/hotel-management/room")
 @RequiredArgsConstructor
 public class RoomController {
 
     private final RoomService service;
 
-//    @Secured({"ADMIN" ,"USER"})
+    //    @Secured({"ADMIN" ,"USER"})
 //    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/danh-sach-phong")
+    @GetMapping("/room-page")
     public ResponseEntity<List<RoomModel>> pageRoom(
             @RequestParam(defaultValue = "0", name = "page") int page
-    ){
+    ) {
 
         return ResponseEntity.ok(service.getAllRoom(page));
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
-    @PostMapping("/them-phong-moi")
+    @PostMapping("/add-room")
     public ResponseEntity<RoomModel> saveRoomType(
             @RequestBody RoomModel roomModel
-    ){
+    ) {
         return ResponseEntity.ok(service.saveRoom(roomModel));
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ADMIN")
-    @PutMapping("/cap-nhat-phong")
+    @PutMapping("/update-room")
     public ResponseEntity<RoomModel> update(
             @RequestBody RoomModel roomModel
-    ){
+    ) {
         return ResponseEntity.ok(service.saveRoom(roomModel));
     }
 }
